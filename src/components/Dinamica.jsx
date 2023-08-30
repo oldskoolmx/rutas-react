@@ -1,13 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const Nosotros = () => {
-    // datos estaticos
-    /* const datos = [
-        {id:1, nombre: 'Reactjs'},
-        {id:2, nombre: 'Vuejs'},
-        {id:3, nombre: 'Angular'}
-    ] */
-
+const Dinamica = () => {
     const [equipo, setEquipo] = React.useState([])
     
     React.useEffect(() =>{
@@ -15,7 +9,7 @@ const Nosotros = () => {
 
         //console.log('useEffect');
         //para poner el titulo en la pestaña
-        //document.title = 'useEfect'; 
+        //document.title = 'useEfect';
         //setEquipo(datos);
         obtenerDatos()
     },[])
@@ -23,19 +17,23 @@ const Nosotros = () => {
     const obtenerDatos = async () => {
         
         //para hacer un llamado a la url de una api
-       const data =  await fetch('https://jsonplaceholder.typicode.com/users')
+       const data =  await fetch('https://rickandmortyapi.com/api/character')
        const usuarios = await data.json()
        //console.log(usuarios)
-       setEquipo(usuarios)
+       setEquipo(usuarios.results)
 
     }
   
     return (
     <div>
-      <h1>Nosotros</h1>
+      <h1>Dinamica</h1>
       <ul> {
         equipo.map(item => (
-            <li key={item.id}>{item.name} - {item.email}</li>
+            <li key={item.id}>
+                <Link to={`/dinamica/${item.id}`}>
+                {item.name} - {item.status} - {item.species}
+                </Link>
+                </li>
         )) 
         }
       </ul>
@@ -43,4 +41,4 @@ const Nosotros = () => {
   )
 }
 
-export default Nosotros;
+export default Dinamica

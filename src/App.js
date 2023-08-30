@@ -10,6 +10,8 @@ import {
 import Inicio from "./components/Inicio";
 import Contacto from "./components/Contacto";
 import Nosotros from "./components/Nosotros";
+import Dinamica from "./components/Dinamica";
+import User from "./components/User";
 
 function App() {
   return (
@@ -26,9 +28,16 @@ function App() {
           <Link to="/contacto" className="btn btn-dark ">
             Contacto
           </Link>
+          <Link to="/dinamica" className="btn btn-dark ">
+            Dinamica
+          </Link>
         </div>
         <hr />
         <Routes>
+          <Route path="/dinamica/:id" element={<User />}>
+
+          </Route>
+
           <Route path="/" exact element={<Inicio />}>
 
           </Route>
@@ -36,6 +45,9 @@ function App() {
 
           </Route>
           <Route path="/nosotros" element={<Nosotros />}>
+
+          </Route>
+          <Route path="/dinamica" element={<Dinamica />}>
 
           </Route>
         </Routes>
